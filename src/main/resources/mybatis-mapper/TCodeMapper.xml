@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.transaction.dao.TCodeDao">
+    
+    <insert id="addCode" parameterType="com.example.transaction.entity.TCode">
+        INSERT INTO t_code (id, code, product_id, create_time)
+        VALUES (#{id}, #{code}, #{productId}, #{createTime})
+    </insert>
+
+    <select id="queryCode" parameterType="com.example.transaction.entity.QueryCodeVo" 
+            resultType="com.example.transaction.entity.TCode">
+        SELECT id,
+               code,
+               product_id as productId,
+               create_time as createTime
+        FROM t_code
+        WHERE 1=1
+        <if test="code != null and code != ''">
+            AND code = #{code}
+        </if>
+        <if test="productId != null and productId != ''">
+            AND product_id = #{productId}
+        </if>
+    </select>
+    
+</mapper> 

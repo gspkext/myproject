@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.transaction.dao.TChainDataDao">
+    
+    <insert id="addChainData" parameterType="com.example.transaction.entity.bo.ChainDataBo">
+        INSERT INTO t_chain_data (id, data, create_time, hash)
+        VALUES (#{id}, #{data}, #{createTime}, #{hash})
+    </insert>
+
+    <select id="getList" resultType="com.example.transaction.entity.TChainData">
+        SELECT id,
+               data,
+               create_time as createTime,
+               hash
+        FROM t_chain_data
+        ORDER BY create_time DESC
+    </select>
+
+    <update id="updateData" parameterType="com.example.transaction.entity.TradeObject">
+        UPDATE t_chain_data
+        SET block_index = #{blockIndex}
+        WHERE hash = #{hash}
+    </update>
+    
+</mapper> 
