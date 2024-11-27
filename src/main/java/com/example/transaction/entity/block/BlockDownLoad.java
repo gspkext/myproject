@@ -1,9 +1,12 @@
 package com.example.transaction.entity.block;
 
 public class BlockDownLoad {
+
     private Block block;
+
+    private String blockFileStr;
+
     private String maxBlockIndex;
-    private BlockFile blockFile;
 
     public Block getBlock() {
         return block;
@@ -13,6 +16,14 @@ public class BlockDownLoad {
         this.block = block;
     }
 
+    public String getBlockFileStr() {
+        return blockFileStr;
+    }
+
+    public void setBlockFileStr(String blockFileStr) {
+        this.blockFileStr = blockFileStr;
+    }
+
     public String getMaxBlockIndex() {
         return maxBlockIndex;
     }
@@ -20,12 +31,4 @@ public class BlockDownLoad {
     public void setMaxBlockIndex(String maxBlockIndex) {
         this.maxBlockIndex = maxBlockIndex;
     }
-
-    public BlockFile getBlockFile() {
-        return blockFile;
-    }
-
-    public void setBlockFile(BlockFile blockFile) {
-        this.blockFile = blockFile;
-    }
-} 
+}

@@ -1,27 +1,27 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.transaction.dao.TProductDao">
-    
-    <insert id="addProduct" parameterType="com.example.transaction.entity.bo.ProductBo">
-        INSERT INTO t_product (id, name, create_time)
-        VALUES (#{id}, #{name}, #{createTime})
+
+    <insert id="save" parameterType="com.example.transaction.entity.TProduct">
+        insert into
+            t_product
+        (`product_name`,`product_desc`,`create_time`,`address`)
+            values
+        (#{productName},#{productDesc},#{createTime},#{address})
     </insert>
 
-    <select id="getList" resultType="com.example.transaction.entity.TProduct">
-        SELECT id,
-               name,
-               create_time as createTime
-        FROM t_product
-        ORDER BY create_time DESC
+    <select id="queryAll" resultType="com.example.transaction.entity.TProduct">
+        select * from t_product
     </select>
 
-    <select id="selectAll" resultType="com.example.transaction.entity.TProduct">
-        SELECT * FROM t_product
+    <select id="queryById" parameterType="int" resultType="com.example.transaction.entity.TProduct">
+        select * from t_product where `id` = #{id}
     </select>
 
-    <insert id="insert" parameterType="com.example.transaction.entity.TProduct">
-        INSERT INTO t_product (id, name, create_time)
-        VALUES (#{id}, #{name}, #{createTime})
-    </insert>
+    <select id="queryByName" parameterType="string" resultType="com.example.transaction.entity.TProduct">
+        select * from t_product where `product_name` = #{productName}
+    </select>
 
-</mapper> 
+
+</mapper>

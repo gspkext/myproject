@@ -19,4 +19,4 @@ public class BlockInfo {
     public void setCurrentBlockIndex(String currentBlockIndex) {
         this.currentBlockIndex = currentBlockIndex;
     }
-} 
+}

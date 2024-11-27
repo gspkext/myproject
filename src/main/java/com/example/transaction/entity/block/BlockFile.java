@@ -1,31 +1,57 @@
 package com.example.transaction.entity.block;
 
+import com.example.transaction.entity.TradeObject;
+
+import java.util.Map;
+
 public class BlockFile {
-    private String fileName;
-    private String fileHash;
-    private String fileContent;
+    private Map<String, TradeObject> tbMap;
 
-    public String getFileName() {
-        return fileName;
+    private String blockIndex;
+
+    private String blockHash;
+
+    private String preBlockHash;
+
+    public Map<String, TradeObject> getTbMap() {
+        return tbMap;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setTbMap(Map<String, TradeObject> tbMap) {
+        this.tbMap = tbMap;
     }
 
-    public String getFileHash() {
-        return fileHash;
+    public String getBlockIndex() {
+        return blockIndex;
     }
 
-    public void setFileHash(String fileHash) {
-        this.fileHash = fileHash;
+    public void setBlockIndex(String blockIndex) {
+        this.blockIndex = blockIndex;
     }
 
-    public String getFileContent() {
-        return fileContent;
+    public String getBlockHash() {
+        return blockHash;
     }
 
-    public void setFileContent(String fileContent) {
-        this.fileContent = fileContent;
+    public void setBlockHash(String blockHash) {
+        this.blockHash = blockHash;
+    }
+
+    public String getPreBlockHash() {
+        return preBlockHash;
+    }
+
+    public void setPreBlockHash(String preBlockHash) {
+        this.preBlockHash = preBlockHash;
+    }
+
+    @Override
+    public String toString() {
+        return "BlockFile{" +
+                "tbMap=" + tbMap +
+                ", blockIndex='" + blockIndex + '\'' +
+                ", blockHash='" + blockHash + '\'' +
+                ", preBlockHash='" + preBlockHash + '\'' +
+                '}';
     }
 }

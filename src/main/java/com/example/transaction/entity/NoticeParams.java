@@ -1,22 +1,31 @@
 package com.example.transaction.entity;
 
-public class NoticeParams {
-    private String blockIndex;
+import com.google.gson.Gson;
+
+import java.io.Serializable;
+
+public class NoticeParams implements Serializable {
+    private String bn;
+
     private String ip;
-    private String hash;
+    private String tradeName;
 
-    public NoticeParams(String blockIndex, String ip, String hash) {
-        this.blockIndex = blockIndex;
+    public NoticeParams() {
+    }
+
+    public NoticeParams(String bn, String ip, String tradeName) {
+        super();
+        this.bn = bn;
         this.ip = ip;
-        this.hash = hash;
+        this.tradeName = tradeName;
     }
 
-    public String getBlockIndex() {
-        return blockIndex;
+    public String getBn() {
+        return bn;
     }
 
-    public void setBlockIndex(String blockIndex) {
-        this.blockIndex = blockIndex;
+    public void setBn(String bn) {
+        this.bn = bn;
     }
 
     public String getIp() {
@@ -27,11 +36,16 @@ public class NoticeParams {
         this.ip = ip;
     }
 
-    public String getHash() {
-        return hash;
+    public String toJSONString() {
+        return new Gson().toJson(this);
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public String getTradeName() {
+        return tradeName;
     }
-} 
+
+    public void setTradeName(String tradeName) {
+        this.tradeName = tradeName;
+    }
+
+}

@@ -1,32 +1,53 @@
 package com.example.transaction.utils;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
+
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
+
 public class EncryptUtil {
-    
-    public static String SHA256(String str) {
-        MessageDigest messageDigest;
-        String encodeStr = "";
+    private static final Logger logger = Logger.getLogger(EncryptUtil.class);
+
+    /**
+     * 使用sha-1计算摘要
+     *
+     * @param content
+     * @return 40位密文
+     */
+    public static String encryptSHA1(String content) {
         try {
-            messageDigest = MessageDigest.getInstance("SHA-256");
-            messageDigest.update(str.getBytes("UTF-8"));
-            encodeStr = byte2Hex(messageDigest.digest());
+            if (StringUtils.isEmpty(content)) {
+                logger.error("加密明文不能为空");
+            }
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            byte[] result = md.digest(content.getBytes(StandardCharsets.UTF_8));
+            return ConvertUtil.byteToHexString(result);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
-        return encodeStr;
+        return null;
     }
 
-    private static String byte2Hex(byte[] bytes) {
-        StringBuilder builder = new StringBuilder();
-        String temp;
-        for (byte b : bytes) {
-            temp = Integer.toHexString(b & 0xFF);
-            if (temp.length() == 1) {
-                builder.append("0");
+    /**
+     * 使用sha-256计算摘要
+     *
+     * @param content
+     * @return 64位密文
+     */
+    public static String encryptSHA256(String content) {
+        try {
+            if (StringUtils.isEmpty(content)) {
+                logger.error("加密明文不能为空");
             }
-            builder.append(temp);
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] result = md.digest(content.getBytes(StandardCharsets.UTF_8));
+            return ConvertUtil.byteToHexString(result);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
         }
-        return builder.toString();
+        return null;
     }
-} 
+
+}

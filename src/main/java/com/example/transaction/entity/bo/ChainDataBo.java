@@ -1,40 +1,16 @@
 package com.example.transaction.entity.bo;
 
-public class ChainDataBo {
-    private String id;
-    private String data;
-    private String createTime;
-    private String hash;
+import com.example.transaction.entity.TChainData;
 
-    public String getId() {
-        return id;
+public class ChainDataBo extends TChainData {
+
+    private String privateKey;
+
+    public String getPrivateKey() {
+        return privateKey;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
     }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    public String getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getHash() {
-        return hash;
-    }
-
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
-} 
+}

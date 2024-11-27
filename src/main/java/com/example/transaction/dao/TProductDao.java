@@ -1,12 +1,17 @@
 package com.example.transaction.dao;
 
 import com.example.transaction.entity.TProduct;
-import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
-@Mapper
+@Repository
 public interface TProductDao {
-    List<TProduct> selectAll();
-    int insert(TProduct product);
-    // 其他可能的方法...
-} 
+    void save(TProduct tProduct);
+
+    List<TProduct> queryAll();
+
+    TProduct queryById(int id);
+
+    TProduct queryByName(String name);
+}

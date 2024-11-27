@@ -3,29 +3,98 @@ package com.example.transaction.utils;
 import com.example.transaction.entity.TradeBodyPool;
 import com.example.transaction.entity.TradeObject;
 import com.example.transaction.entity.block.BlockDownLoad;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.example.transaction.entity.block.BlockFile;
+import com.google.gson.Gson;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BlockBaseUtils {
 
-    public static TradeBodyPool genTbp(BlockDownLoad bdl) {
+
+    public static TradeBodyPool genTbp(BlockDownLoad bdl) throws Exception {
         TradeBodyPool tbp = new TradeBodyPool();
-        Map<String, TradeObject> tbMap = new HashMap<>();
-        
-        String blockData = bdl.getBlock().data;
-        JSONArray jsonArray = JSON.parseArray(blockData);
-        
-        for (int i = 0; i < jsonArray.size(); i++) {
-            JSONObject jsonObject = jsonArray.getJSONObject(i);
-            TradeObject tradeObject = JSON.parseObject(jsonObject.toJSONString(), TradeObject.class);
-            tbMap.put(tradeObject.getHash(), tradeObject);
-        }
-        
-        tbp.setTbMap(tbMap);
+        String blockFileStr = bdl.getBlockFileStr();
+        tbp.setTbMap(genTbm(blockFileStr));
         return tbp;
     }
-} 
+
+    /**
+     * 区块字符转map对象
+     *
+     * @param blockFileStr
+     * @return
+     * @throws Exception
+     */
+    public static Map<String, TradeObject> genTbm(String blockFileStr) throws Exception {
+        Map<String, TradeObject> tbMap = new HashMap<String, TradeObject>();
+        try {
+
+            BlockFile blockFile = new Gson().fromJson(blockFileStr, BlockFile.class);
+            tbMap = blockFile.getTbMap();
+
+        } catch (Exception e) {
+            throw new Exception(e);
+        }
+        return tbMap;
+    }
+
+
+    /**
+     * map对象转交易体
+     *
+     * @param map
+     * @return
+     */
+
+    public static TradeObject mapToTradeBody(Map map) {
+        TradeObject tb = null;
+        try {
+            tb = new TradeObject();
+            Field[] fields = TradeObject.class.getDeclaredFields();
+            for (Field field : fields) {
+
+                field.setAccessible(true);
+                field.set(tb, map.get(field.getName()));
+
+            }
+        } catch (SecurityException | IllegalArgumentException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return tb;
+    }
+
+    public static byte[] listToByteArray(List<String> list) throws IOException {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(bos);
+        oos.writeObject(list);
+        oos.flush();
+        return bos.toByteArray();
+    }
+
+    public static <T> T mapToTrade(Map map, Class<T> clasz) {
+        T tb = null;
+        try {
+            try {
+                tb = clasz.newInstance();
+            } catch (InstantiationException e) {
+                e.getMessage();
+                return null;
+            }
+            Field[] fields = clasz.getDeclaredFields();
+            for (Field field : fields) {
+                field.setAccessible(true);
+                field.set(tb, map.get(field.getName()));
+            }
+        } catch (SecurityException | IllegalArgumentException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return tb;
+    }
+
+}

@@ -1,31 +1,16 @@
 package com.example.transaction.entity.bo;
 
-public class ProductBo {
-    private String id;
-    private String name;
-    private String createTime;
+import com.example.transaction.entity.TProduct;
 
-    public String getId() {
-        return id;
+public class ProductBo extends TProduct {
+
+    private String privateKey;
+
+    public String getPrivateKey() {
+        return privateKey;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
-    }
-} 
+}

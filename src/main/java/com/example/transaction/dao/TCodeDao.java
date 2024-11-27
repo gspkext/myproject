@@ -1,13 +1,16 @@
 package com.example.transaction.dao;
 
-import com.example.transaction.entity.QueryCodeVo;
 import com.example.transaction.entity.TCode;
-import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Mapper
+
+@Repository
 public interface TCodeDao {
-    void addCode(TCode tCode);
-    List<TCode> queryCode(QueryCodeVo queryCodeVo);
-} 
+    void save(TCode code);
+
+    List<TCode> queryByName(String productName);
+
+    TCode queryByCode(String code);
+}

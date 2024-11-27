@@ -1,16 +1,19 @@
 package com.example.transaction.entity;
 
 public class TCode {
-    private String id;
-    private String code;
-    private String productId;
-    private String createTime;
 
-    public String getId() {
+    private int id;
+    private String code;
+    private String createTime;
+    private String productName;
+    private String address;
+    private String imgUrl;
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -22,14 +25,6 @@ public class TCode {
         this.code = code;
     }
 
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
     public String getCreateTime() {
         return createTime;
     }
@@ -37,4 +32,28 @@ public class TCode {
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
-} 
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+}

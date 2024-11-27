@@ -1,22 +1,25 @@
 package com.example.transaction.entity;
 
+import java.util.List;
+
 public class QueryCodeVo {
-    private String code;
-    private String productId;
 
-    public String getCode() {
-        return code;
+    private TProduct product;
+    private List<TChainData> list;
+
+    public TProduct getProduct() {
+        return product;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setProduct(TProduct product) {
+        this.product = product;
     }
 
-    public String getProductId() {
-        return productId;
+    public List<TChainData> getList() {
+        return list;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setList(List<TChainData> list) {
+        this.list = list;
     }
-} 
+}
