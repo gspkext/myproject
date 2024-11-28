@@ -1,8 +1,6 @@
+# 区块链商品交易记录系统
 
-```markdown
- 区块链商品交易记录系统
-
- ChainController 接口文档
+## ChainController 接口文档
 
 ### 上链接口
 
@@ -39,44 +37,6 @@
 #### 描述
 
 将数据上链。
-
-#### 对应代码
-
-```java
-@RequestMapping("/toChain")
-public ResponseEntity<JSONObject> toChain(@RequestBody ChainDataBo chainDataBo) throws Exception {
-    // 参数验证
-    if ("".equals(chainDataBo.getCode()) || chainDataBo.getCode() == null) {
-        jo.setCode("-1");
-        jo.setMsg("Code cannot be empty.");
-        return new ResponseEntity<JSONObject>(jo, HttpStatus.OK);
-    }
-    // ... 其他验证代码 ...
-    
-    // 构建上链数据
-    TChainData tChainData = new TChainData();
-    tChainData.setFrom(tCode.getAddress());
-    tChainData.setTo("system");
-    tChainData.setContent(chainDataBo.getContent());
-    // ... 设置其他字段 ...
-    
-    // 签名并发送交易
-    TradeObject tradeObject = new TradeObject();
-    // ... 设置交易对象字段 ...
-    Sign.SignatureData signatureData = EthUtils.signMessage(tradeObject.toString(), pri);
-    String sign = EthUtils.getSignStr(signatureData);
-    tradeObject.setSign(sign);
-    
-    // 保存链数据并发送交易
-    chainDataDao.save(tChainData);
-    String url = "http://" + ip + ":8001/data/trade";
-    restTemplate.postForEntity(url, tradeObject, TradeObject.class);
-    
-    jo.setCode("1");
-    jo.setMsg("Trade success");
-    return new ResponseEntity<JSONObject>(jo, HttpStatus.OK);
-}
-```
 
 ---
 
@@ -126,48 +86,16 @@ public ResponseEntity<JSONObject> toChain(@RequestBody ChainDataBo chainDataBo) 
 
 根据码查询链上数据。
 
-#### 对应代码
-
-```java
-@RequestMapping("/queryCode")
-public ResponseEntity<JSONObject> queryCode(String code) {
-    JSONObject jo = new JSONObject();
-    if ("".equals(code) || code == null) {
-        jo.setCode("-1");
-        jo.setMsg("Code cannot be empty.");
-        return new ResponseEntity<JSONObject>(jo, HttpStatus.OK);
-    }
-    
-    List<TChainData> tChainData = chainDataDao.queryByCode(code);
-    if (tChainData.size() == 0) {
-        jo.setCode("-1");
-        jo.setMsg("No data found.");
-        return new ResponseEntity<JSONObject>(jo, HttpStatus.OK);
-    }
-    
-    String productName = tChainData.get(0).getProductName();
-    TProduct tProduct = productDao.queryByName(productName);
-    QueryCodeVo queryCodeVo = new QueryCodeVo();
-    queryCodeVo.setList(tChainData);
-    queryCodeVo.setProduct(tProduct);
-    
-    jo.setO(queryCodeVo);
-    jo.setCode("1");
-    jo.setMsg("Query success");
-    return new ResponseEntity<JSONObject>(jo, HttpStatus.OK);
-}
-```
-
 ---
 
-### 商品管理接口 (ProductController)
+## 商品管理接口 (ProductController)
 
-#### 1. 添加产品
+### 1. 添加产品
 
 - **URL**: `/product/add`
 - **方法**: `POST`
 
-##### 请求参数
+#### 请求参数
 
 ```json
 {
@@ -178,7 +106,7 @@ public ResponseEntity<JSONObject> queryCode(String code) {
 }
 ```
 
-##### 响应
+#### 响应
 
 ```json
 {
@@ -188,7 +116,7 @@ public ResponseEntity<JSONObject> queryCode(String code) {
 }
 ```
 
-##### 错误信息
+#### 错误信息
 
 - "Product name cannot be empty."
 - "Product description cannot be empty."
@@ -197,13 +125,13 @@ public ResponseEntity<JSONObject> queryCode(String code) {
 - "Product name occupied. Choose a new one."
 - "Address verification failed. Please try again."
 
-#### 2. 查询所有产品
+### 2. 查询所有产品
 
 - **URL**: `/queryProducts`
 - **方法**: `GET`
 - **请求参数**: 无
 
-##### 响应
+#### 响应
 
 ```json
 {
@@ -218,20 +146,20 @@ public ResponseEntity<JSONObject> queryCode(String code) {
 }
 ```
 
-##### 错误信息
+#### 错误信息
 
 - "No data found."
 
 ---
 
-### 码管理接口 (CodeController)
+## 码管理接口 (CodeController)
 
-#### 1. 创建产品码
+### 1. 创建产品码
 
 - **URL**: `/createCode`
 - **方法**: `POST`
 
-##### 请求参数
+#### 请求参数
 
 ```json
 {
@@ -240,7 +168,7 @@ public ResponseEntity<JSONObject> queryCode(String code) {
 }
 ```
 
-##### 响应
+#### 响应
 
 ```json
 {
@@ -249,18 +177,18 @@ public ResponseEntity<JSONObject> queryCode(String code) {
 }
 ```
 
-##### 错误信息
+#### 错误信息
 
 - "Private key can't be empty."
 - "id should be a non-zero value."
 - "Address verification failed."
 
-#### 2. 查询产品所有码
+### 2. 查询产品所有码
 
 - **URL**: `/queryAllCodeByProductId`
 - **方法**: `POST`
 
-##### 请求参数
+#### 请求参数
 
 ```json
 {
@@ -269,7 +197,7 @@ public ResponseEntity<JSONObject> queryCode(String code) {
 }
 ```
 
-##### 响应
+#### 响应
 
 ```json
 {
@@ -285,7 +213,7 @@ public ResponseEntity<JSONObject> queryCode(String code) {
 }
 ```
 
-##### 错误信息
+#### 错误信息
 
 - "id should be a non-zero value."
 - "Address verification failed."
@@ -293,7 +221,7 @@ public ResponseEntity<JSONObject> queryCode(String code) {
 
 ---
 
-### 生成二维码
+### 3. 生成二维码
 
 - **URL**: `/generateQRCode`
 - **方法**: `GET`
@@ -322,4 +250,3 @@ public ResponseEntity<JSONObject> queryCode(String code) {
 ---
 
 *TBD*
-```
