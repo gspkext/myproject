@@ -1,5 +1,7 @@
 # 区块链商品交易记录系统
 ChainController 接口文档
+
+
 上链接口
 URL: /toChain
 方法: POST
@@ -15,6 +17,11 @@ URL: /toChain
      "code": "1",
      "msg": "Trade success"
    }
+   错误信息:
+"Code cannot be empty."
+"PrivateKey cannot be empty."
+"Content cannot be empty."
+"ProcessName cannot be empty."
 描述: 将数据上链
 对应代码:
    @RequestMapping("/toChain")
@@ -51,6 +58,7 @@ URL: /toChain
        return new ResponseEntity<JSONObject>(jo, HttpStatus.OK);
    }
 
+
 查询码接口
 URL: /queryCode
 方法: GET
@@ -82,6 +90,9 @@ URL: /queryCode
        }
      }
    }
+    错误信息:
+"Code cannot be empty."
+"No data found
     描述: 根据码查询链上数据
 对应代码:
    @RequestMapping("/queryCode")
@@ -113,7 +124,10 @@ URL: /queryCode
        return new ResponseEntity<JSONObject>(jo, HttpStatus.OK);
    }
 
+
 商品管理接口 (ProductController)
+
+
  添加产品
 URL: /product/add
 方法: POST
@@ -138,6 +152,7 @@ URL: /product/add
 "Product name occupied. Choose a new one."
 "Address verification failed. Please try again."
 
+
 查询所有产品
 URL: /queryProducts
 方法: GET
@@ -153,8 +168,13 @@ URL: /queryProducts
         "createTime": "string"
     }]
 }
+错误信息:
+"No data found"
+
 
 码管理接口 (CodeController)
+
+
 创建产品码
 URL: /createCode
 方法: POST
@@ -173,6 +193,7 @@ URL: /createCode
 "Private key can't be empty"
 "id should be a non-zero value."
 "Address verification failed"
+
 
  查询产品所有码
 URL: /queryAllCodeByProductId
@@ -194,6 +215,11 @@ URL: /queryAllCodeByProductId
         "imgUrl": "string"
     }]
 }
+ 错误信息:
+"id should be a non-zero value."
+"Address verification failed"
+"No data found"
+
 
 生成二维码
 URL: /generateQRCode
@@ -204,6 +230,8 @@ code: string (查询参数)
 Content-Type: image/png
 Body: PNG图片数据
 说明: 生成包含查询URL的二维码图片，尺寸为200x200像素
+说明: 生成的二维码包含查询URL：http://{ip}:8007/query?code={code}
+
 所有接口（除二维码接口外）都返回标准JSON格式，包含以下字段：
 code: "1" 表示成功，"-1" 表示失败
 msg: 响应消息
