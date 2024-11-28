@@ -34,6 +34,8 @@
 - "Content cannot be empty."
 - "ProcessName cannot be empty."
 
+都代表请求当中出现了不允许的空字段，请自行排查原因。
+
 #### 描述
 
 将数据上链。
@@ -79,8 +81,8 @@
 
 #### 错误信息
 
-- "Code cannot be empty."
-- "No data found."
+- "Code cannot be empty." 代表Code字段为空。
+- "No data found." 代表没有查询到数据。
 
 #### 描述
 
@@ -122,8 +124,11 @@
 - "Product description cannot be empty."
 - "Address cannot be empty."
 - "Private key cannot be empty."
-- "Product name occupied. Choose a new one."
-- "Address verification failed. Please try again."
+
+上述代表出现了不允许的空字段，请自行排查。
+
+- "Product name occupied. Choose a new one." 系统不允许产品重名，请更换一个名字。
+- "Address verification failed. Please try again." 私钥与地址不匹配，请核对。
 
 ### 2. 查询所有产品
 
@@ -148,7 +153,7 @@
 
 #### 错误信息
 
-- "No data found."
+- "No data found." 代表没有查询到信息。
 
 ---
 
@@ -181,7 +186,10 @@
 
 - "Private key can't be empty."
 - "id should be a non-zero value."
-- "Address verification failed."
+
+上述代表出现了不允许的空值。请自行排查。
+  
+- "Address verification failed." 私钥与地址不匹配，请核对。
 
 ### 2. 查询产品所有码
 
@@ -215,9 +223,9 @@
 
 #### 错误信息
 
-- "id should be a non-zero value."
-- "Address verification failed."
-- "No data found."
+- "id should be a non-zero value." 代表id为空。
+- "Address verification failed." 私钥与地址不匹配，请核对。
+- "No data found." 没有查询到信息。
 
 ---
 
@@ -234,8 +242,7 @@
 
 #### 说明
 
-生成包含查询 URL 的二维码图片，尺寸为 200x200 像素，二维码包含查询 URL：
-`http://{ip}:8007/query?code={code}`
+生成包含查询 URL 的二维码图片，尺寸为 200x200 像素，二维码包含查询 URL。
 
 ---
 
