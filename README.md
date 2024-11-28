@@ -101,10 +101,10 @@
 
 ```json
 {
-  "productName": "string", // 产品名称（必填）
-  "productDesc": "string", // 产品描述（必填）
-  "address": "string", // 以太坊地址（必填）
-  "privateKey": "string"   // 私钥（必填）
+  "productName": "string",
+  "productDesc": "string",
+  "address": "string",
+  "privateKey": "string"
 }
 ```
 
@@ -112,9 +112,9 @@
 
 ```json
 {
-  "code": "1/-1", // 1成功，-1失败
-  "msg": "string", // 响应信息
-  "o": ""         // 空对象
+  "code": "1/-1",
+  "msg": "string",
+  "o": ""
 }
 ```
 
@@ -140,9 +140,9 @@
 
 ```json
 {
-  "code": "1/-1", // 1成功，-1失败
-  "msg": "string", // 响应信息
-  "o": [{ // 产品列表
+  "code": "1/-1",
+  "msg": "string",
+  "o": [{
     "productName": "string",
     "productDesc": "string",
     "address": "string",
@@ -168,8 +168,8 @@
 
 ```json
 {
-  "privateKey": "string", // 私钥（必填）
-  "id": "number"         // 产品ID（必填，非0）
+  "privateKey": "string",
+  "id": "number"
 }
 ```
 
@@ -177,8 +177,8 @@
 
 ```json
 {
-  "code": "1/-1", // 1成功，-1失败
-  "msg": "string" // 响应信息
+  "code": "1/-1",
+  "msg": "string"
 }
 ```
 
@@ -200,8 +200,8 @@
 
 ```json
 {
-  "id": "number", // 产品ID（必填，非0）
-  "privateKey": "string" // 私钥（必填）
+  "id": "number",
+  "privateKey": "string"
 }
 ```
 
@@ -209,9 +209,9 @@
 
 ```json
 {
-  "code": "1/-1", // 1成功，-1失败
-  "msg": "string", // 响应信息
-  "o": [{ // 码列表
+  "code": "1/-1",
+  "msg": "string",
+  "o": [{
     "code": "string",
     "createTime": "string",
     "productName": "string",

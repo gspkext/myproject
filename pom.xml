@@ -106,7 +106,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.4.2</version>
                 <configuration>
-                    <mainClass>com.example.transaction.transactionApplication</mainClass>
+                    <mainClass>com.example.transaction.TransactionApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
