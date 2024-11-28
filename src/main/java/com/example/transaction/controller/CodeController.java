@@ -39,6 +39,9 @@ public class CodeController {
     @Resource
     private TCodeDao codeDao;
 
+    @Value("${frontend.url}")
+    String frontendurl;
+
     @RequestMapping("/createCode")
     public ResponseEntity<JSONObject> createCode(@RequestBody ProductBo productBo) {
         JSONObject jo = new JSONObject();
@@ -124,8 +127,7 @@ public class CodeController {
     @CrossOrigin
     public void generateQRCode(HttpServletResponse response, @RequestParam String code) throws WriterException, IOException {
 
-
-        String url = "http://" + ip + ":8007/query?code=" + code;
+        String url = frontendurl + "query?code=" + code;
 
         response.setContentType(MediaType.IMAGE_PNG_VALUE);
 
