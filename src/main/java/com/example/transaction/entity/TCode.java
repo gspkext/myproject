@@ -1,12 +1,20 @@
 package com.example.transaction.entity;
 
+/**
+ * 编码实体类
+ */
 public class TCode {
-
+    // 主键ID
     private int id;
+    // 编码
     private String code;
+    // 创建时间
     private String createTime;
+    // 产品名称
     private String productName;
+    // 区块链地址
     private String address;
+    // 二维码图片URL
     private String imgUrl;
 
     public int getId() {

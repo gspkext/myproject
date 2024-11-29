@@ -6,15 +6,16 @@ import org.apache.log4j.Logger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
-
+/**
+ * 加密工具类
+ */
 public class EncryptUtil {
     private static final Logger logger = Logger.getLogger(EncryptUtil.class);
 
     /**
-     * 使用sha-1计算摘要
-     *
-     * @param content
-     * @return 40位密文
+     * 使用SHA-1算法计算摘要
+     * @param content 待加密内容
+     * @return 40位十六进制字符串
      */
     public static String encryptSHA1(String content) {
         try {
@@ -31,10 +32,9 @@ public class EncryptUtil {
     }
 
     /**
-     * 使用sha-256计算摘要
-     *
-     * @param content
-     * @return 64位密文
+     * 使用SHA-256算法计算摘要
+     * @param content 待加密内容
+     * @return 64位十六进制字符串
      */
     public static String encryptSHA256(String content) {
         try {
@@ -49,5 +49,4 @@ public class EncryptUtil {
         }
         return null;
     }
-
 }

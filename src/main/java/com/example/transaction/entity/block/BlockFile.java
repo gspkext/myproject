@@ -4,13 +4,17 @@ import com.example.transaction.entity.TradeObject;
 
 import java.util.Map;
 
+/**
+ * 区块文件实体类
+ */
 public class BlockFile {
+    // 交易对象映射表
     private Map<String, TradeObject> tbMap;
-
+    // 区块索引
     private String blockIndex;
-
+    // 区块哈希
     private String blockHash;
-
+    // 前一个区块的哈希
     private String preBlockHash;
 
     public Map<String, TradeObject> getTbMap() {

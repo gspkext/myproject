@@ -1,11 +1,18 @@
 package com.example.transaction.entity;
 
+/**
+ * 产品实体类
+ */
 public class TProduct {
-
+    // 主键ID
     private int id;
+    // 产品名称
     private String productName;
+    // 产品描述
     private String productDesc;
+    // 创建时间
     private String createTime;
+    // 区块链地址
     private String address;
 
     public int getId() {

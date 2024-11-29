@@ -2,9 +2,13 @@ package com.example.transaction.entity;
 
 import java.util.List;
 
+/**
+ * 查询编码的视图对象
+ */
 public class QueryCodeVo {
-
+    // 产品信息
     private TProduct product;
+    // 链上数据列表
     private List<TChainData> list;
 
     public TProduct getProduct() {

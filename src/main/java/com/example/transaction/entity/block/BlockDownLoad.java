@@ -1,11 +1,14 @@
 package com.example.transaction.entity.block;
 
+/**
+ * 区块下载实体类
+ */
 public class BlockDownLoad {
-
+    // 区块信息
     private Block block;
-
+    // 区块文件内容字符串
     private String blockFileStr;
-
+    // 最大区块索引
     private String maxBlockIndex;
 
     public Block getBlock() {
