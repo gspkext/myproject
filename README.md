@@ -1,5 +1,13 @@
 # 区块链商品交易记录系统
 
+## 部署方式
+
+```bash
+java -jar transaction.jar
+# 然后切换到前端根目录
+vue serve
+```
+
 ## 上链接口 (ChainController)
 
 ### 上链接口
